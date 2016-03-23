@@ -213,10 +213,6 @@ namespace CoApp.NuGetNativeMSBuildTasks {
     }
 
     public class NuGetPackageOverlay : MsBuildTaskBase {
-        static NuGetPackageOverlay() {
-            // remove this file when we're done.
-            FilesystemExtensions.TryHardToDelete(Assembly.GetExecutingAssembly().Location);
-        }
 
         private static char[] _delimiter = new[] {
             ';'

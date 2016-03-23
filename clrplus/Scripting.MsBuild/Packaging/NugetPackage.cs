@@ -341,7 +341,7 @@ namespace ClrPlus.Scripting.MsBuild.Packaging {
 
 
                 // always add the msbuild extensions to the main package
-                AddFileToNuSpec(Path.Combine(etcPath, "CoApp.NuGetNativeMSBuildTasks.dll.orig"), @"\build\native\private\CoApp.NuGetNativeMSBuildTasks.dll.orig");
+                AddFileToNuSpec(Path.Combine(etcPath, "CoApp.NuGetNativeMSBuildTasks.dll"), @"\build\native\private\CoApp.NuGetNativeMSBuildTasks.dll");
 
                 // first, register all the tasks
                 foreach (var t in MSBuildExtensionTasks) {
@@ -370,10 +370,6 @@ namespace ClrPlus.Scripting.MsBuild.Packaging {
 
 
                 var initTarget = Targets.Value.EarlyInitTarget.Value;
-                var copyTask = initTarget.AddTask("Copy");
-                copyTask.SetParameter("SkipUnchangedFiles", "true");
-                copyTask.SetParameter("SourceFiles", @"$(NuGet-NativeExtensionPath)\coapp.NuGetNativeMSBuildTasks.dll.orig");
-                copyTask.SetParameter("DestinationFiles", @"$(NuGet-NativeExtensionPath)\coapp.NuGetNativeMSBuildTasks.dll");
 
                 pg = initTarget.AddPropertyGroup();
                 prop = pg.AddProperty("NugetMsBuildExtensionLoaded", "true");
